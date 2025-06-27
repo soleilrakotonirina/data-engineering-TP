@@ -1,0 +1,32 @@
+2025-06-27 07:08:22 +0000 - dagster - DEBUG - etl_job - c89334b6-8be3-418e-ab33-e4e1655c3ef7 - 3751 - LOGS_CAPTURED - Started capturing logs in process (pid: 3751).
+2025-06-27 07:08:22 +0000 - dagster - DEBUG - etl_job - c89334b6-8be3-418e-ab33-e4e1655c3ef7 - 3751 - extract_transform - STEP_START - Started execution of step "extract_transform".
+2025-06-27 07:08:23 +0000 - dagster - ERROR - etl_job - c89334b6-8be3-418e-ab33-e4e1655c3ef7 - 3751 - extract_transform - STEP_FAILURE - Execution of step "extract_transform" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "extract_transform"::
+
+botocore.errorfactory.NoSuchKey: An error occurred (NoSuchKey) when calling the GetObject operation: The specified key does not exist.
+
+Stack Trace:
+  File "/usr/local/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/usr/local/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+                                                                    ^^^^^^^^^^^^^^^^^^
+  File "/opt/dagster/app/pipelines/etl_pipeline.py", line 20, in extract_transform
+    obj = s3.get_object(Bucket='datatest', Key='format_conditionnelle.xlsx')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/botocore/client.py", line 595, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/botocore/client.py", line 1058, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+

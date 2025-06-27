@@ -3,7 +3,7 @@ version: '3.9'
 services:
   dagster:
     build:
-      context: .
+      context: ./dagster
       dockerfile: Dockerfile
     container_name: dagster
     ports:
@@ -16,8 +16,10 @@ services:
     command: >
       bash -c "
         dagster-daemon run & 
-        dagster-webserver -f pipelines/__init__.py -h 0.0.0.0 -p 3000
+        dagster-webserver -m pipelines -h 0.0.0.0 -p 3000
       "
+    depends_on:
+      - postgres
 
   minio:
     image: minio/minio

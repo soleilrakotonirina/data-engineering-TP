@@ -1,13 +1,7 @@
-from dagster import job, op, repository
-
-@op
-def hello():
-    return "Salut depuis Dagster !"
-
-@job
-def hello_job():
-    hello()
+from dagster import repository
+from .etl_pipeline import etl_job
+from .hello_job import hello_job
 
 @repository
 def my_repo():
-    return [hello_job]
+    return [etl_job, hello_job]

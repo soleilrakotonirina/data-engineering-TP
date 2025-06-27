@@ -1,2 +1,2 @@
 [tool.dagster]
-module_name = "pipeline"
+module_name = "pipelines"

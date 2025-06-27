@@ -1,0 +1,6 @@
+Colonnes dans le fichier : ['Elève', 'Âge', 'Genre', 'Note', 'Paiemt photo de classe', 'A-t-il payé ?', 'Mois paiement', 'Fonction SI pour\nle paiement', 'Fonction SI\npour la majorité', 'Unnamed: 9', 'Mois']
+Erreur DuckDB : Binder Error: Referenced column "Prix" not found in FROM clause!
+Candidate bindings: "Paiemt photo de classe", "Mois"
+
+LINE 1: SELECT * FROM df WHERE Prix > 0
+                               ^
