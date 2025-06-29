@@ -1,7 +1,16 @@
 from dagster import repository
-from .etl_pipeline import etl_job
-from .hello_job import hello_job
+from .etl_pipeline import (
+    etl_job,
+    bareme_solde_asset,
+    bareme_job,
+    daily_schedule
+)
 
 @repository
 def my_repo():
-    return [etl_job, hello_job]
+    return [
+        etl_job,
+        bareme_solde_asset,
+        bareme_job,
+        daily_schedule,
+    ]

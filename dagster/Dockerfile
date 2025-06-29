@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 # Installer les dépendances
-RUN pip install dagster dagster-webserver pandas openpyxl duckdb boto3 s3fs pyarrow
+RUN pip install dagster dagster-webserver pandas openpyxl xlrd duckdb boto3 s3fs sqlalchemy psycopg2-binary pytest pytest-cov
 
 # Définir l'environnement Dagster
 ENV DAGSTER_HOME=/opt/dagster/dagster_home
